@@ -1,11 +1,10 @@
 'use strict';
-let counter=0 ;
+let counter=999 ;
 const body = document.getElementsByTagName('body');
-
-
 let submit=document.getElementById('submit') ;
-let val=0;
 
+let val=0;
+const AllFood=[] ;
 //constructor:
 
 function Food(id, name,type, price,) {
@@ -13,6 +12,7 @@ function Food(id, name,type, price,) {
     this.name=name;
     this.type= type;
     this.price= price;
+    AllFood.push(this);
     this.printMenu();
 } 
 
@@ -54,7 +54,10 @@ function handleSubmit(event) {
     let price = event.target.price.value; 
     let id=UniqNum() ;
     const newFood=new Food(id,name,type,price);
+
+    
 }
+
 
 
 function UniqNum(counter){ 
@@ -62,4 +65,8 @@ function UniqNum(counter){
     ++counter; } 
 
 
-
+    
+    function saveData(data) {
+        let stringObj = JSON.stringify(data);
+        localStorage.setItem('newFood', stringObj);
+    }
