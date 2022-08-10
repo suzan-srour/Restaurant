@@ -1,20 +1,30 @@
 'use strict';
-let counter=999 ;
+let counter=0 ;
+let val=0;
 const body = document.getElementsByTagName('body');
 let submit=document.getElementById('submit') ;
-
-let val=0;
+let form=document.getElementById("form1");
+console.log(form) ;
 const AllFood=[] ;
 //constructor:
 
 function Food(id, name,type, price,) {
-    this.id= id;
+    this.id=id ;
     this.name=name;
     this.type= type;
     this.price= price;
     AllFood.push(this);
-    this.printMenu();
 } 
+
+
+Food.prototype.UniqNum =function(counter){
+const num=counter+1;
+const str =num.toString();
+const ans =str.padStart(4,'0');
+this.FoodId=ans ;
+++this.id ;}
+
+UniqNum(counter) ;
 
 
 Food.prototype.printMenu = function () {
@@ -38,35 +48,19 @@ Food.prototype.printMenu = function () {
 
     } 
     
-    
-    // store data in table
 
-//Food.id ;
-
-//submit(form);
-
-let form=document.getElementById("form1");
 form.addEventListener("submit",handleSubmit);
 function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault(event);
     let name = event.target.foodName.value ;
-    let type = event.targe.foodType.value ;
+    let type = event.target.foodType.value ;
     let price = event.target.price.value; 
-    let id=UniqNum() ;
-    const newFood=new Food(id,name,type,price);
 
-    
+    const newFood=new Food(name,type,price);
+    saveData(AllFood);
 }
 
-
-
-function UniqNum(counter){ 
-    this.FoodId=counter+1 ;
-    ++counter; } 
-
-
-    
-    function saveData(data) {
-        let stringObj = JSON.stringify(data);
+    function saveData(newFood) {
+        let stringObj = JSON.stringify(newFood);
         localStorage.setItem('newFood', stringObj);
     }
